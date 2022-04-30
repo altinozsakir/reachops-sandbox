@@ -7,14 +7,14 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./trıno/etc:etc/trino
+      - ./trino/etc:etc/trino
     links:
       reachops-hive-metastore
 
   reachops-hive-metastore:
     image: techneural/reachops-hive-metastore:0.0.1
     restart: always
-    command: 
+    entrypoint: /docker-entrypoint.sh
     depends_on:
       - hive-repo-mysql
     expose:
