@@ -56,19 +56,19 @@
     <value>SchemaTable</value>
     </property>
     <property>
-    <name>fs.s3a.access.key</name>
-    <value>{{.Values.S3.accessKey}}</value>
+    <name>fs.s3.access.key</name>
+    <value></value>
     </property>
     <property>
-    <name>fs.s3a.secret.key</name>
-    <value>{{.Values.S3.secretKey}}</value>
+    <name>fs.s3.secret.key</name>
+    <value></value>
     </property>
     <property>
-    <name>fs.s3a.endpoint</name>
-    <value>{{.Values.S3.endpoint}}</value>
+    <name>fs.s3.endpoint</name>
+    <value>http://ozone-s3/reachopsholder</value>
     </property>
     <property>
-    <name>fs.s3a.path.style.access</name>
-    <value>{{.Values.S3.pathStyleAccess}}</value>
+    <name>fs.s3.path.style.access</name>
+    <value>true</value>
     </property>
     </configuration>

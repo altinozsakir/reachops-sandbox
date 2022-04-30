@@ -8,6 +8,9 @@ services:
       - 8080:8080
     volumes:
       - ./trino/etc:/etc/trino/
+    links:
+      - reachops-hive-metastore
+      - ozone-s3
 
   reachops-hive-metastore:
     image: techneural/reachops-hive-metastore:0.0.1
@@ -19,6 +22,8 @@ services:
       - 9083
     volumes:
       - ./reachops-hive-metastore/etc/metastore-site.xml:/opt/apache-hive-metastore/conf/metastore-site.xml
+    links:
+      - ozone-s3
 
   hive-repo-mysql:
     image: mysql:latest
@@ -32,3 +37,12 @@ services:
       - ./reachops-hive-metastore/data:/var/lib/mysql
     expose:
       - 3306
+
+  ozone-s3:
+    image: apache/ozone:latest
+    restart: always
+      - 9876:9876
+    volumes:
+      - ./reachops-hive-metastore/data:/var/lib/mysql
+    expose:
+      - 9878
