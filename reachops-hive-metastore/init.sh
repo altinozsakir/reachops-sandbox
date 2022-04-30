@@ -1,0 +1,1 @@
+echo "This init file can be overwritable to run sh scripts."
