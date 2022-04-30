@@ -2,7 +2,7 @@ version: '3'
 
 services:
   trinodb:
-    image: trino/trinodb:379
+    image: trinodb/trino:379
     restart: always
     ports:
       - 8080:8080
@@ -16,13 +16,13 @@ services:
     restart: always
     command: 
     depends_on:
-      - hive-repo
+      - hive-repo-mysql
     expose:
       - 9083
     volumes:
       - ./reachops-hive-metastore/etc/metastore-site.xml:/opt/apache-hive-metastore/conf/metastore-site.xml
 
-  hive-repo:
+  hive-repo-mysql:
     image: mysql:latest
     restart: always
     environment:
