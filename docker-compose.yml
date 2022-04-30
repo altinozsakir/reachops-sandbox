@@ -7,14 +7,12 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./trino/etc:etc/trino
-    links:
-      reachops-hive-metastore
+      - ./trino/etc:/etc/trino/
 
   reachops-hive-metastore:
     image: techneural/reachops-hive-metastore:0.0.1
     restart: always
-    entrypoint: /docker-entrypoint.sh
+    entrypoint: entrypoint.sh
     depends_on:
       - hive-repo-mysql
     expose:
@@ -29,6 +27,7 @@ services:
       MYSQL_USER: reachops
       MYSQL_PASSWORD: reachops
       MYSQL_DATABASE: hive-repo
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./reachops-hive-metastore/data:/var/lib/mysql
     expose:
