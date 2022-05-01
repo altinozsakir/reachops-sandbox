@@ -56,19 +56,19 @@
     <value>SchemaTable</value>
     </property>
     <property>
-    <name>fs.s3.access.key</name>
+    <name>fs.s3g.access.key</name>
     <value>reachops</value>
     </property>
     <property>
-    <name>fs.s3.secret.key</name>
+    <name>fs.s3g.secret.key</name>
     <value>reachops</value>
     </property>
     <property>
-    <name>fs.s3.endpoint</name>
+    <name>fs.s3g.endpoint</name>
     <value>http://s3g:9878</value>
     </property>
     <property>
-    <name>fs.s3.path.style.access</name>
+    <name>fs.s3g.path.style.access</name>
     <value>true</value>
     </property>
     </configuration>
