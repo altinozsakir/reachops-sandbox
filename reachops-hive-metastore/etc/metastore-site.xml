@@ -1,7 +1,7 @@
     <configuration>
     <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:mysql://hive-repo-mysql:3306/hive_repo</value>
+    <value>jdbc:mysql://hive-repo-mysql:3306/hive-repo</value>
     </property>
     <property>
     <name>javax.jdo.option.ConnectionDriverName</name>
@@ -12,7 +12,7 @@
     <value>reachops</value>
     </property>
     <property>
-    <name> javax.jdo.option.ConnectionPassword</name>
+    <name>javax.jdo.option.ConnectionPassword</name>
     <value>reachops</value>
     </property>
     <property>
@@ -57,15 +57,15 @@
     </property>
     <property>
     <name>fs.s3.access.key</name>
-    <value></value>
+    <value>reachops</value>
     </property>
     <property>
     <name>fs.s3.secret.key</name>
-    <value></value>
+    <value>reachops</value>
     </property>
     <property>
     <name>fs.s3.endpoint</name>
-    <value>http://ozone-s3/reachopsholder</value>
+    <value>http://s3g:9878</value>
     </property>
     <property>
     <name>fs.s3.path.style.access</name>

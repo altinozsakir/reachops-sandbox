@@ -31,6 +31,8 @@ services:
   reachops-hive-metastore:
     image: techneural/reachops-hive-metastore:0.0.1
     restart: always
+    environment:
+      METASTORE_DB: mysql
     entrypoint: /entrypoint.sh
     depends_on:
       - hive-repo-mysql
