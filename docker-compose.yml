@@ -6,7 +6,7 @@ x-common-config:
   volumes:
     - /opt/ozone/ozone-1.2.1:/opt/hadoop
   env_file:
-    - docker-config
+    - /opt/ozone/ozone-1.2.1/compose/ozone/docker-config
 
 x-layout_version:
   &metadata_layout
