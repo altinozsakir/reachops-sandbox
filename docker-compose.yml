@@ -64,6 +64,8 @@ services:
       <<: *replication
       <<: *metadata_layout
       OZONE_OPTS:
+    volumes:
+      - ./ozone/datanode/data:/data
     command: ["ozone","datanode"]
   om:
     <<: *common-config
@@ -75,6 +77,8 @@ services:
     ports:
       - 9874:9874
       - 9862:9862
+    volumes:
+      - ./ozone/om/data:/data
     command: ["ozone","om"]
   scm:
     <<: *common-config
@@ -87,6 +91,8 @@ services:
       OZONE_OPTS:
       <<: *replication
       <<: *metadata_layout
+      volumes:
+      - ./ozone/scm/data:/data
     command: ["ozone","scm"]
   s3g:
     <<: *common-config
@@ -96,6 +102,8 @@ services:
       <<: *metadata_layout
     ports:
       - 9878:9878
+    volumes:
+      - ./ozone/s3g/data:/data
     command: ["ozone","s3g"]
   recon:
     <<: *common-config
@@ -105,4 +113,6 @@ services:
       OZONE_OPTS:
       <<: *replication
       <<: *metadata_layout
+    volumes:
+      - ./ozone/recon/data:/data
     command: ["ozone","recon"]
