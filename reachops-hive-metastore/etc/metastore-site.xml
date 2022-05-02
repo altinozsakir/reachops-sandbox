@@ -52,6 +52,11 @@
     <value>*</value>
     </property>
     <property>
+    <name>fs.s3a.impl</name>
+    <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+    <description>The implementation class of the S3A Filesystem</description>
+    </property>
+    <property>
     <name>datanucleus.autoStartMechanism</name>
     <value>SchemaTable</value>
     </property>
