@@ -66,6 +66,7 @@ services:
       OZONE_OPTS:
     volumes:
       - ./ozone/datanode/data:/data
+      - /opt/ozone/ozone-1.2.1:/opt/hadoop
     command: ["ozone","datanode"]
   om:
     <<: *common-config
@@ -79,6 +80,7 @@ services:
       - 9862:9862
     volumes:
       - ./ozone/om/data:/data
+      - /opt/ozone/ozone-1.2.1:/opt/hadoop
     command: ["ozone","om"]
   scm:
     <<: *common-config
@@ -91,8 +93,9 @@ services:
       OZONE_OPTS:
       <<: *replication
       <<: *metadata_layout
-      volumes:
+    volumes:
       - ./ozone/scm/data:/data
+      - /opt/ozone/ozone-1.2.1:/opt/hadoop
     command: ["ozone","scm"]
   s3g:
     <<: *common-config
@@ -104,6 +107,7 @@ services:
       - 9878:9878
     volumes:
       - ./ozone/s3g/data:/data
+      - /opt/ozone/ozone-1.2.1:/opt/hadoop
     command: ["ozone","s3g"]
   recon:
     <<: *common-config
@@ -115,4 +119,5 @@ services:
       <<: *metadata_layout
     volumes:
       - ./ozone/recon/data:/data
+      - /opt/ozone/ozone-1.2.1:/opt/hadoop
     command: ["ozone","recon"]
