@@ -4,8 +4,8 @@ x-superset-depends-on: &superset-depends-on
   - postgres
   - redis
 x-superset-volumes: &superset-volumes
-  - /opt/superset/docker:/app/docker
-  - /opt/superset:/app/superset_home
+  - ./superset/docker:/app/docker
+  - ./superset/supersetdata:/app/superset_home
 
 x-common-config:
   &common-config
@@ -26,7 +26,6 @@ x-replication:
 services:
   trinodb:
     image: trinodb/trino:379
-    container_name: coordinator
     restart: always
     ports:
       - 8080:8080
@@ -161,10 +160,9 @@ services:
 
   redis:
     image: redis:latest
-    container_name: superset_cache
     restart: unless-stopped
     volumes:
-      - redis:/data
+      - ./superset/redisdata:/data
 
   postgres:
     env_file: docker/.env-non-dev
