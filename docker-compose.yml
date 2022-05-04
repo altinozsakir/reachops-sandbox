@@ -1,7 +1,7 @@
 version: '3'
 x-superset-image: &superset-image apache/superset:1.1.4
 x-superset-depends-on: &superset-depends-on
-  - postgres
+  - db
   - redis
 x-superset-volumes: &superset-volumes
   - ./superset/docker:/app/docker
@@ -164,13 +164,15 @@ services:
     volumes:
       - ./superset/redisdata:/data
 
-  postgres:
+  db:
     env_file: superset/docker/.env-non-dev
     image: postgres:10
     container_name: superset_db
     restart: unless-stopped
     volumes:
       - ./superset/postgresdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
 
   superset:
     env_file: superset/docker/.env-non-dev
