@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  trinodb:
+    image: trinodb/trino:379
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./trino/etc:/etc/trino/
+    links:
+      - s3g
+
+
+  reachops-hive-metastore:
+    image: techneural/reachops-hive-metastore:0.0.1
+    restart: always
+    environment:
+      METASTORE_DB: mysql
+    entrypoint: /entrypoint.sh
+    depends_on:
+      - hive-repo-mysql
+    expose:
+      - 9083
+    volumes:
+      - ./reachops-hive-metastore/etc/metastore-site.xml:/opt/apache-hive-metastore/conf/metastore-site.xml
+    links:
+      - s3g
+
+  hive-repo-mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_USER: reachops
+      MYSQL_PASSWORD: reachops
+      MYSQL_DATABASE: hive-repo
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./reachops-hive-metastore/data:/var/lib/mysql
+    expose:
+      - 3306
+
+  s3g:
+    image: apache/ozone:latest
+    restart: always
+    volumes:
+      - ./reachops-hive-metastore/data:/var/lib/mysql
+    ports:
+      - 9878:9878
+      - 9876:9876
+  

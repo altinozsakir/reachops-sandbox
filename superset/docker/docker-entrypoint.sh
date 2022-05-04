@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -15,21 +15,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-/app/docker/docker-init.sh
+set -eo pipefail
 
-# TODO: copy config overrides from ENV vars
-
-# TODO: run celery in detached state
-
-# start up the web server
-gunicorn \
-    --bind  "0.0.0.0:${SUPERSET_PORT}" \
-    --access-logfile '-' \
-    --error-logfile '-' \
-    --workers 1 \
-    --worker-class gthread \
-    --threads 8 \
-    --timeout 60 \
-    --limit-request-line 0 \
-    --limit-request-field_size 0 \
-    "${FLASK_APP}"
+if [ "${#}" -ne 0 ]; then
+    exec "${@}"
+else
+    gunicorn \
+        --bind  "0.0.0.0:${SUPERSET_PORT}" \
+        --access-logfile '-' \
+        --error-logfile '-' \
+        --workers 1 \
+        --worker-class gthread \
+        --threads 20 \
+        --timeout ${GUNICORN_TIMEOUT:-60} \
+        --limit-request-line 0 \
+        --limit-request-field_size 0 \
+        "${FLASK_APP}"
+fi
