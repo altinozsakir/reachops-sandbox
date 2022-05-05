@@ -62,7 +62,7 @@ services:
     expose:
       - 3306
     ports:
-      - 3306:3366
+      - 3306:3306
       
   datanode1:
     <<: *common-config
