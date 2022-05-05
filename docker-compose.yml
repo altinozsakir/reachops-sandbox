@@ -176,7 +176,6 @@ services:
   superset:
     env_file: superset/docker/.env-non-dev
     image: *superset-image
-    container_name: superset_app
     command: ["/app/docker/docker-bootstrap.sh", "app-gunicorn"]
     user: "root"
     restart: unless-stopped
@@ -187,7 +186,6 @@ services:
 
   superset-init:
     image: *superset-image
-    container_name: superset_init
     command: ["/app/docker/docker-init.sh"]
     env_file: superset/docker/.env-non-dev
     depends_on: *superset-depends-on
@@ -196,7 +194,6 @@ services:
 
   superset-worker:
     image: *superset-image
-    container_name: superset_worker
     command: ["/app/docker/docker-bootstrap.sh", "worker"]
     env_file: superset/docker/.env-non-dev
     restart: unless-stopped
@@ -206,7 +203,6 @@ services:
 
   superset-worker-beat:
     image: *superset-image
-    container_name: superset_worker_beat
     command: ["/app/docker/docker-bootstrap.sh", "beat"]
     env_file: superset/docker/.env-non-dev
     restart: unless-stopped
