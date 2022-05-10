@@ -10,6 +10,7 @@ x-superset-volumes: &superset-volumes
 x-common-config:
   &common-config
   image: apache/ozone-runner:20210329-1
+  restart: always
   volumes:
     - /opt/ozone/ozone-1.2.1:/opt/hadoop
   env_file:
@@ -63,7 +64,15 @@ services:
       - 3306
     ports:
       - 3306:3306
-      
+  
+  dbeaver:
+    image: dbeaver/cloudbeaver:latest
+    restart: unless-stopped
+    ports:
+      - 9800:8978
+    volumes:
+      - ./workspace:/opt/cloudbeaver/workspace    
+
   datanode1:
     <<: *common-config
     ports:
